@@ -1,0 +1,50 @@
+{
+  "name": "databox-driver-tplink-hs100",
+  "version": "1.0.0",
+  "description": "A Databox driver for the TP-LINK HS100 smart plug",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "start": "node ./src/main.js",
+    "build": "docker build -t databox/databox-driver-tplink-hs100 .",
+    "deploy": "docker tag databox/databox-driver-tplink-hs100 registry.upintheclouds.org/databox-driver-tplink-hs100 && docker push registry.upintheclouds.org/databox-driver-tplink-hs100",
+    "build-arm": "docker build -f Dockerfile-arm -t databox/databox-driver-tplink-hs100-arm .",
+    "deploy-arm": "docker tag databox/databox-driver-tplink-hs100-arm registry.upintheclouds.org/databox-driver-tplink-hs100-arm && docker push registry.upintheclouds.org/databox-driver-tplink-hs100-arm",
+    "clean": "node ./node_modules/modclean/bin/modclean.js -p ./node_modules/ -r",
+    "getshell": "docker exec -i -t databox-driver-tplink-hs100 /bin/bash",
+    "kill": "docker kill databox-driver-tplink-hs100",
+    "attach": "docker attach databox-driver-tplink-hs100",
+    "shell": "docker run -i -t databox/databox-driver-tplink-hs100 /bin/bash",
+    "local": "docker run -i -t databox/databox-driver-tplink-hs100"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Toshbrown/databox-driver-tplink-hs100.git"
+  },
+  "keywords": [
+    "Databox",
+    "TP-LINK",
+    "HS100",
+    "Smart",
+    "Plug"
+  ],
+  "author": "Anthony Brown",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Toshbrown/databox-driver-tplink-hs100/issues"
+  },
+  "homepage": "https://github.com/Toshbrown/databox-driver-tplink-hs100#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "hs100-api": "^0.3.0",
+    "modclean": "",
+    "promise": "^7.1.1",
+    "request": "^2.75.0"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.1.2",
+    "supertest": "^2.0.0"
+  }
+}
