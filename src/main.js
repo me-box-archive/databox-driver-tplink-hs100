@@ -139,7 +139,7 @@ databox_directory.register_driver('TP-LINK','databox-driver-tplink-hs100', 'A Da
     proms = [];
 
     for(plug of plugs) {
-      proms.push(databox_directory.register_sensor(DRIVER_ID, SENSOR_TYPE_IDs[0].id, DATASTORE_ID, VENDOR_ID, plug.ip, 'Whats', 'w', 'power draw in Whats', ''));
+      proms.push(databox_directory.register_sensor(DRIVER_ID, SENSOR_TYPE_IDs[0].id, DATASTORE_ID, VENDOR_ID, plug.ip, 'Watts', 'w', 'power draw in Watts', ''));
       proms.push(databox_directory.register_sensor(DRIVER_ID, SENSOR_TYPE_IDs[1].id, DATASTORE_ID, VENDOR_ID, plug.ip, 'Volts', 'V', 'current voltage', ''));
       proms.push(databox_directory.register_sensor(DRIVER_ID, SENSOR_TYPE_IDs[2].id, DATASTORE_ID, VENDOR_ID, plug.ip, 'Amps', 'A', 'current in amps', ''));
       proms.push(databox_directory.register_sensor(DRIVER_ID, SENSOR_TYPE_IDs[3].id, DATASTORE_ID, VENDOR_ID, plug.ip, 'on or off', '', 'current power state of the plug', ''));
