@@ -29,6 +29,6 @@
   ],
 
   "resource-requirements": {
-    "store":"databox-store-blob"
+    "store":"datastore-timeseries"
   }
 }

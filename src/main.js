@@ -7,7 +7,7 @@ var request = require('request');
 const Hs100Api = require('hs100-api');
 const client = new Hs100Api.Client();
 
-var DATABOX_STORE_BLOB_ENDPOINT = process.env.DATABOX_STORE_BLOB_ENDPOINT;
+var DATASTORE_TIMESERIES_ENDPOINT = process.env.DATASTORE_TIMESERIES_ENDPOINT;
 
 
 var SENSOR_TYPE_IDs = [];
@@ -91,7 +91,11 @@ function updateSensors() {
     .then((powerstate)=>{
       data.push(powerstate);
       if(plug.powerState_sid != null) {
-        save(plug.powerState_sid,powerstate);
+        if(powerstate == true) {
+          save(plug.powerState_sid,1);
+        } else {
+          save(plug.powerState_sid,0);
+        }
       }
     })
     .catch((err)=>{
@@ -116,7 +120,7 @@ databox_directory.register_driver('TP-LINK','databox-driver-tplink-hs100', 'A Da
     console.log("VENDOR_ID", VENDOR_ID);
     console.log("DRIVER_ID", DRIVER_ID);
 
-    return databox_directory.get_datastore_id('databox-store-blob');
+    return databox_directory.get_datastore_id('datastore-timeseries');
   })
   .then ((datastore_id) => {
     DATASTORE_ID = datastore_id;
@@ -197,7 +201,7 @@ function save(sid,data) {
       console.log("Saving data::", sid, data);
       if(VENDOR_ID != null) {
         var options = {
-            uri: DATABOX_STORE_BLOB_ENDPOINT + '/data',
+            uri: DATASTORE_TIMESERIES_ENDPOINT + '/data',
             method: 'POST',
             json: 
             {
